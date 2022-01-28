@@ -1,0 +1,29 @@
+{
+  "name": "Employee-CMS",
+  "version": "1.0.0",
+  "description": "A content management system that runs entirely in your terminal",
+  "main": "app.js",
+  "directories": {
+    "lib": "lib"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node app.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/DrDano/Employee-CMS.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/DrDano/Employee-CMS/issues"
+  },
+  "homepage": "https://github.com/DrDano/Employee-CMS#readme",
+  "dependencies": {
+    "console.table": "^0.10.0",
+    "inquirer": "^8.2.0",
+    "mysql2": "^2.3.3"
+  }
+}
