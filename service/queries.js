@@ -47,7 +47,8 @@ class Queries {
     };
 
     queryAllDepartments(cb) {
-        const sql = `SELECT * FROM department;`
+        const sql = 
+        `SELECT department.id AS ID, department.name AS Department_Name FROM department;`
 
         db.promise().query(sql)
             .then(([rows, fields]) => {
@@ -58,7 +59,11 @@ class Queries {
     }
 
     queryAllRoles(cb) {
-        const sql = `SELECT * FROM role;`
+        const sql = 
+        `SELECT roles.id, roles.title, roles.salary, department.name AS department
+        FROM roles
+        LEFT JOIN department ON roles.dep_id = department.id
+        GROUP BY dep_id ORDER BY dep_id DESC;`
 
         db.promise().query(sql)
             .then(([rows, fields]) => {

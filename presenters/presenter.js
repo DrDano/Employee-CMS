@@ -11,16 +11,9 @@ class Presenter {
         getQuery.runSeeds();
     }
 
-    displayEmployees() {
-        getQuery.queryAllEmployees(rows => console.table(rows));
-    }
-
-    displayDepartments() {
-        getQuery.queryAllDepartments(rows => console.table(rows));
-    }
-
-    displayRoles() {
-        getQuery.queryAllRoles(rows => console.table(rows));
+    display(action) {
+        action = action.split(' ').join('');
+        getQuery[action](rows => console.table(rows));
     }
 }
 

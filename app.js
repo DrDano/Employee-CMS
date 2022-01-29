@@ -2,4 +2,4 @@ const Presenter = require('./presenters/presenter');
 const present = new Presenter;
 
 present.setDataModel()
-present.displayEmployees();
+present.display('queryAllRoles');
