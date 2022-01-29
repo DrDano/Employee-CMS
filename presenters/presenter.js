@@ -1,20 +1,34 @@
 const Query = require('../service/queries');
-const cTable = require('console.table');
 const getQuery = new Query;
 
-runSchema = new Promise((resolve, reject) => {
-    resolve(getQuery.runSchema())
-    .catch((err) => reject(err))
-})
+class Presenter {
+    constructor() {
+        this.runSchema = new Promise((resolve, reject) => {
+            resolve(getQuery.runSchema())
+            .catch((err) => reject(err))
+        })
+        
+        this.runSeeds = new Promise((resolve, reject) => {
+            resolve(getQuery.runSeeds())
+            .catch((err) => reject(err))
+        })
+    }
 
-runSeeds = new Promise((resolve, reject) => {
-    resolve(getQuery.runSeeds())
-    .catch((err) => reject(err))
-})
+    setDataModel() {
+        this.runSchema.then(() => {this.runSeeds})
+    }
 
-getEmployees = new Promise((resolve, reject) => {
-    resolve(getQuery.queryAllEmployees())
-    .catch((err) => reject(err))
-})
+    displayEmployees() {
+        getQuery.queryAllEmployees(rows => console.table(rows));
+    }
 
-runSchema.then(() => {runSeeds}).then(() => getEmployees).then((data) => {console.log(data)})
+    displayDepartments() {
+        getQuery.queryAllDepartments(rows => console.table(rows));
+    }
+
+    displayRoles() {
+        getQuery.queryAllRoles(rows => console.table(rows));
+    }
+}
+
+module.exports = Presenter;

@@ -16,7 +16,6 @@ class Queries {
                     console.log(err.message);
                     return;
                 }
-                return;
             });
         });
     };
@@ -30,41 +29,44 @@ class Queries {
                     console.log(err.message);
                     return;
                 }
-                return;
             });
         });
     };
 
-    queryAllEmployees() {
+    queryAllEmployees(cb) {
         const sql = `SELECT * FROM employee;`
 
-        db.query(sql, (err, result) => {
+        db.query(sql, (err, rows) => {
             if (err) {
                 console.log(err.message);
                 return;
             }
-            return result;
+            cb(rows);
         });
-    }
 
-    queryAllDepartments() {
+        db.end();
+    };
+
+    queryAllDepartments(cb) {
         const sql = `SELECT * FROM department;`
 
         db.promise().query(sql)
             .then(([rows, fields]) => {
-                return rows;
+                cb(rows);
             })
-            .catch(console.log);
+            .catch(console.log)
+            .then( () => db.end());
     }
 
-    queryAllRoles() {
+    queryAllRoles(cb) {
         const sql = `SELECT * FROM role;`
 
         db.promise().query(sql)
             .then(([rows, fields]) => {
-                return rows;
+                cb(rows);
             })
-            .catch(console.log);
+            .catch(console.log)
+            .then( () => db.end());
     }
 
 }
