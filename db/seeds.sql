@@ -7,7 +7,7 @@ VALUES
 ('Human Resources'),
 ('Quality Assurance');
 
-INSERT INTO role (title, salary, department_id)
+INSERT INTO roles (title, salary, dep_id)
 VALUES
 ('Research Analyst', 70000, 3),
 ('Manager', 120000, 2),
@@ -18,10 +18,14 @@ VALUES
 ('Data Manager', 80000, 6),
 ('Corporate Counselor', 55000, 5);
 
-INSERT INTO employee (first_name, last_name, role_id, manager_id)
+INSERT INTO managers (first_name, last_name, roles_id)
 VALUES
-('John', 'Filbert', 1, 4),
-('Gregory', 'Schmidt', 8, 2),
-('Dirk', 'Mardruck', 2),
-('Kacie', 'Chandler', 6, 2),
-('Unice', 'Blight', 5, 2);
+('Dirk', 'Mardruck', 2);
+
+INSERT INTO employee (first_name, last_name, roles_id, manager_id)
+VALUES
+('John', 'Filbert', 1, 1),
+('Gregory', 'Schmidt', 8, 1),
+('Dirk', 'Mardruck', 2, 1),
+('Kacie', 'Chandler', 6, 1),
+('Unice', 'Blight', 5, 1);
