@@ -7,6 +7,10 @@ class Queries {
         this.seeds = fs.readFileSync('./db/seeds.sql').toString();
     }
 
+    disconnect() {
+        db.end();
+    }
+
     runSchema() {
         const sql = this.schema.split(';');
 
@@ -15,7 +19,6 @@ class Queries {
                 if (err) {
                     return;
                 }
-                return;
             });
         });
     };
@@ -31,9 +34,14 @@ class Queries {
             });
         });
     };
-
+ 
     queryAllEmployees(cb) {
-        const sql = `SELECT * FROM employee;`
+        const sql = `SELECT employee.id, CONCAT(employee.first_name, ' ', employee.last_name) AS name, roles.title, department.name AS department, roles.salary, CONCAT(managers.first_name, ' ', managers.last_name) AS manager
+        FROM employee
+        LEFT JOIN roles ON employee.roles_id = roles.id
+        LEFT JOIN department ON roles.dep_id = department.id
+        LEFT JOIN managers ON employee.manager_id = managers.id
+        GROUP BY employee.last_name ORDER BY employee.last_name;`
 
         db.query(sql, (err, rows) => {
             if (err) {
@@ -42,8 +50,6 @@ class Queries {
             }
             cb(rows);
         });
-
-        db.end();
     };
 
     queryAllDepartments(cb) {
@@ -55,7 +61,6 @@ class Queries {
                 cb(rows);
             })
             .catch(console.log)
-            .then( () => db.end());
     }
 
     queryAllRoles(cb) {
@@ -70,7 +75,18 @@ class Queries {
                 cb(rows);
             })
             .catch(console.log)
-            .then( () => db.end());
+    }
+
+    addDepartment(dept) {
+        const sql = `INSERT INTO department (name) VALUES (?);`
+
+        db.query(sql, dept, (err, rows) => {
+            if (err) {
+                console.log(err.message);
+                return;
+            }
+            
+        });
     }
 
 }

@@ -15,6 +15,11 @@ class Presenter {
         action = action.split(' ').join('');
         getQuery[action](rows => console.table(rows));
     }
+
+    append(action, content) {
+        action = action.split(' ').join('');
+        getQuery[action](content)
+    }
 }
 
 module.exports = Presenter;
