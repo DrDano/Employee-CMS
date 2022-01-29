@@ -11,11 +11,13 @@ class Queries {
         const sql = this.schema.split(';');
 
         sql.forEach(element => {
-            db.promise().query(element)
-            .then((result) => {
-                // console.log(result);
-            })
-            .catch(console.log);
+            db.query(element, (err, result) => {
+                if (err) {
+                    console.log(err.message);
+                    return;
+                }
+                return;
+            });
         });
     };
 
@@ -23,22 +25,26 @@ class Queries {
         const sql = this.seeds.split(';');
 
         sql.forEach(element => {
-            db.promise().query(element)
-            .then((result) => {
-                // console.log(result);
-            })
-            .catch(console.log);
+            db.query(element, (err, result) => {
+                if (err) {
+                    console.log(err.message);
+                    return;
+                }
+                return;
+            });
         });
     };
 
     queryAllEmployees() {
         const sql = `SELECT * FROM employee;`
 
-        db.promise().query(sql)
-            .then(([rows, fields]) => {
-                return rows;
-            })
-            .catch(console.log);
+        db.query(sql, (err, result) => {
+            if (err) {
+                console.log(err.message);
+                return;
+            }
+            return result;
+        });
     }
 
     queryAllDepartments() {

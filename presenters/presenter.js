@@ -2,16 +2,19 @@ const Query = require('../service/queries');
 const cTable = require('console.table');
 const getQuery = new Query;
 
-const getEmployees = new Promise((resolve, reject) => {
-    resolve(getQuery.queryAllEmployees());
-    reject(new Error("error displaying employees"))
-});
+runSchema = new Promise((resolve, reject) => {
+    resolve(getQuery.runSchema())
+    .catch((err) => reject(err))
+})
 
-getQuery.runSchema();
-getQuery.runSeeds();
+runSeeds = new Promise((resolve, reject) => {
+    resolve(getQuery.runSeeds())
+    .catch((err) => reject(err))
+})
 
-// getEmployees.then((employees) => {console.table(employees)})
-// const presenter = new Presenter();
-// presenter.displayEmployees().then(res => console.table(res));
+getEmployees = new Promise((resolve, reject) => {
+    resolve(getQuery.queryAllEmployees())
+    .catch((err) => reject(err))
+})
 
-// Will use console.table to present results of queries to the user
+runSchema.then(() => {runSeeds}).then(() => getEmployees).then((data) => {console.log(data)})
