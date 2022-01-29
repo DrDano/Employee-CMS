@@ -16,6 +16,7 @@ class Queries {
                     console.log(err.message);
                     return;
                 }
+                return;
             });
         });
     };
