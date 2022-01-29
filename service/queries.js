@@ -13,7 +13,6 @@ class Queries {
         sql.forEach(element => {
             db.query(element, (err, result) => {
                 if (err) {
-                    console.log(err.message);
                     return;
                 }
                 return;
@@ -27,7 +26,6 @@ class Queries {
         sql.forEach(element => {
             db.query(element, (err, result) => {
                 if (err) {
-                    console.log(err.message);
                     return;
                 }
             });
