@@ -8,6 +8,25 @@ class Queries {
         this.seeds = fs.readFileSync('./db/seeds.sql').toString();
     }
 
+    dropDatabase() {
+        const sql = `DROP DATABASE IF EXISTS corporate;`
+        const modSql = this.schema.split(';');
+
+        db.query(sql, (err, result) => {
+            if (err) {
+                return;
+            }
+        })
+
+        modSql.forEach(element => {
+            db.query(element, (err, result) => {
+                if (err) {
+                    return;
+                }
+            });
+        });
+    }
+
     disconnect(data = "") {
         db.end();
         const displayInfo = () => {
@@ -49,7 +68,7 @@ class Queries {
         LEFT JOIN roles ON employee.roles_id = roles.id
         LEFT JOIN department ON roles.dep_id = department.id
         LEFT JOIN managers ON employee.manager_id = managers.id
-        GROUP BY employee.last_name ORDER BY employee.last_name;`
+        ORDER BY employee.last_name;`
 
         db.query(sql, (err, rows) => {
             if (err) {
@@ -113,14 +132,14 @@ class Queries {
     }
 
     addManager(man) {
-        const sql = `INSERT INTO roles (first_name, last_name, roles_id) VALUES (?,?,?);`
+        const sql = `INSERT INTO managers (first_name, last_name, roles_id) VALUES (?,?,?);`
 
         db.promise().query(sql, man)
         .catch(console.log)
     }
 
     addEmployee(emp) {
-        const sql = `INSERT INTO roles (first_name, last_name, roles_id, manager_id) VALUES (?,?,?,?);`
+        const sql = `INSERT INTO employee (first_name, last_name, roles_id, manager_id) VALUES (?,?,?,?);`
 
         db.promise().query(sql, emp)
         .catch(console.log)

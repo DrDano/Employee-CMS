@@ -14,7 +14,7 @@ class Prompt {
                 type: 'list',
                 name: 'menu',
                 message: 'What would you like to do?',
-                choices: ['query All Employees', 'query All Departments', 'query All Roles', new inquirer.Separator(), 'add Department', 'add Role', 'add Manager', 'add Employee', new inquirer.Separator(), 'update Employee Role', 'update Employee Manager', new inquirer.Separator(), 'delete Department', 'delete Role', 'delete Employee', 'delete Manager', new inquirer.Separator(), 'disconnect',new inquirer.Separator()]
+                choices: ['query All Employees', 'query All Departments', 'query All Roles', new inquirer.Separator(), 'add Department', 'add Role', 'add Manager', 'add Employee', new inquirer.Separator(), 'update Employee Role', 'update Employee Manager', new inquirer.Separator(), 'delete Department', 'delete Role', 'delete Employee', 'delete Manager', new inquirer.Separator(), 'disconnect',new inquirer.Separator(), 'run Seeds', new inquirer.Separator(), 'drop Database', new inquirer.Separator()]
             },
             {
                 type: 'input',
@@ -47,6 +47,124 @@ class Prompt {
                         return true;
                     }
                 }
+            },
+            {
+                type: 'input',
+                name: 'addManF',
+                message: 'Please provide the manager\'s first name',
+                when: (answers) => answers.menu === 'add Manager'
+            },
+            {   
+                type: 'input',
+                name: 'addManL',
+                message: 'Please provide the manager\'s last name',
+                when: (answers) => {
+                    if (answers.addManF) {
+                        return true;
+                    }
+                }
+            },
+            {
+                type: 'input',
+                name: 'addManRoleId',
+                message: 'Please provide a role id for the manager',
+                when: (answers) => {
+                    if (answers.addManL) {
+                        return true;
+                    }
+                }
+            },
+            {
+                type: 'input',
+                name: 'addEmployeeF',
+                message: 'Please provide the employee\'s first name',
+                when: (answers) => answers.menu === 'add Employee'
+            },
+            {   
+                type: 'input',
+                name: 'addEmployeeL',
+                message: 'Please provide the employee\'s last name',
+                when: (answers) => {
+                    if (answers.addEmployeeF) {
+                        return true;
+                    }
+                }
+            },
+            {
+                type: 'input',
+                name: 'addERoleId',
+                message: 'Please provide a role id for the employee',
+                when: (answers) => {
+                    if (answers.addEmployeeL) {
+                        return true;
+                    }
+                }
+            },
+            {
+                type: 'input',
+                name: 'addEManId',
+                message: 'Please provide the manager id of the employee\'s manager',
+                when: (answers) => {
+                    if (answers.addERoleId) {
+                        return true;
+                    }
+                }
+            },
+            {
+                type: 'input',
+                name: 'updateERole',
+                message: 'What will the employee\'s new role id be?',
+                when: (answers) => answers.menu === 'update Employee Role'
+            },
+            {   
+                type: 'input',
+                name: 'updateERoleId',
+                message: 'Please provide the employee\'s id',
+                when: (answers) => {
+                    if (answers.updateERole) {
+                        return true;
+                    }
+                }
+            },
+            {
+                type: 'input',
+                name: 'updateEMan',
+                message: 'What will the employee\'s new manager id be?',
+                when: (answers) => answers.menu === 'update Employee Manager'
+            },
+            {   
+                type: 'input',
+                name: 'updateEManId',
+                message: 'Please provide the employee\'s id',
+                when: (answers) => {
+                    if (answers.updateEMan) {
+                        return true;
+                    }
+                }
+            },
+            {
+                type: 'input',
+                name: 'deleteDep',
+                message: 'What is the id of the department you want to delete?',
+                when: (answers) => answers.menu === 'delete Department'
+            },
+            {
+                type: 'input',
+                name: 'deleteRole',
+                message: 'What is the id of the role you want to delete?',
+                when: (answers) => answers.menu === 'delete Role'
+            },
+            {
+                type: 'input',
+                name: 'deleteEmp',
+                message: 'What is the id of the employee you want to delete?',
+                when: (answers) => answers.menu === 'delete Employee'
+            },
+            {
+                type: 'input',
+                name: 'deleteMan',
+                message: 'What is the id of the manager you want to delete',
+                when: (answers) => answers.menu === 'delete Manager'
             }
         ])
     }

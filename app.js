@@ -5,7 +5,7 @@ const Query = require('./service/queries');
 const query = new Query;
 const prompt = new Prompt;
 
-present.setDataModel();
+query.runSchema();
 
 function app() {
     prompt.mainMenu()
