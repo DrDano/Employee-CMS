@@ -16,8 +16,7 @@ function app() {
         } else present.execute(result.menu)
     })
     .then(() => {
-        query.disconnect()
-        return app();
+        app();
     })
 }
 
