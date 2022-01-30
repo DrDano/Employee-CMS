@@ -36,6 +36,13 @@ A content management system that runs entirely in your terminal.
 
   Clone the repository. Then in your terminal enter ```node install``` which will install mysql2, inquirer, and console.table.
 
+  Create a project.config file in the root of the repo and paste the following into it with your mysql password:
+  ```
+  module.exports = {
+    pw:"your password here"
+    };
+  ```
+
   ## Usage
   Once the repo is cloned: ```npm start``` is the only command you need to enter into the terminal.
 
