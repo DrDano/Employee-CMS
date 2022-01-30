@@ -43,6 +43,8 @@ A content management system that runs entirely in your terminal.
     };
   ```
 
+  This file will be ignored if you choose to push the project.
+
   ## Usage
   Once the repo is cloned: ```npm start``` is the only command you need to enter into the terminal.
 

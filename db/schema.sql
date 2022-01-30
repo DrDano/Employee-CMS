@@ -27,7 +27,7 @@ managers (
     roles_id INTEGER,
     FOREIGN KEY (roles_id) 
         REFERENCES roles(id)
-        ON DELETE SET NULL
+        ON DELETE CASCADE
 );
 
 CREATE TABLE IF NOT EXISTS
@@ -40,7 +40,7 @@ employee (
     CONSTRAINT fk_roles
         FOREIGN KEY (roles_id)
         REFERENCES roles(id)
-        ON DELETE SET NULL,
+        ON DELETE CASCADE,
     CONSTRAINT fk_man
         FOREIGN KEY (manager_id)
         REFERENCES managers(id)
