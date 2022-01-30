@@ -15,6 +15,12 @@ class Prompt {
                 name: 'menu',
                 message: 'What would you like to do?',
                 choices: ['query All Employees', 'query All Departments', 'query All Roles', new inquirer.Separator(), 'add Department', 'add Role', 'add Manager', 'add Employee', new inquirer.Separator(), 'update Employee Role', 'update Employee Manager', new inquirer.Separator(), 'delete Department', 'delete Role', 'delete Employee', 'delete Manager', new inquirer.Separator()]
+            },
+            {
+                type: 'input',
+                name: 'addDep',
+                message: 'Please provide a department name.',
+                when: (answers) => answers.menu === 'add Department'
             }
         ])
     }

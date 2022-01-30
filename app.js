@@ -13,11 +13,15 @@ function app() {
         if (result.menu.split(' ')[0] === 'query') {
             present.display(result.menu)
             return;
-        } else present.execute(result.menu)
+        } else {
+            modResult = Object.values(result).slice(1).toString()
+            present.execute(result.menu, modResult)
+        }
     })
     .then(() => {
         app();
     })
+    .catch((error) => console.log(error))
 }
 
 app();
