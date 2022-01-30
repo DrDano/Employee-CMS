@@ -16,8 +16,7 @@ A content management system that runs entirely in your terminal.
 
   Each time you run the app it will run the schema but keep your database and tables. There is an option within the inquirer menu that allows you to drop your database if you want to start over, but you can also delete any item you've created individually.
 
-  ## Deployment Link
-  [Link to deployed app](https://notserverdh.herokuapp.com/)
+  The order of operations is ```app -> prompts -> app -> presenter -> queries```
 
   ## Walk Through Video
   [Link to Walk Through]()
@@ -33,16 +32,16 @@ A content management system that runs entirely in your terminal.
   * [License](#license)
 
   ## Installation
-  If you are going to be running the app from your IDE, this step is necessary, otherwise you can use through Heroku without utilizing any CLI commands.
-
   Make sure you have the latest stable version of node installed: ```node --version```
 
-  Fork the project and clone the repository. Then in your CLI enter ```node install``` which will install express.js, as it is the only dependency.
+  Clone the repository. Then in your terminal enter ```node install``` which will install mysql2, inquirer, and console.table.
 
   ## Usage
   Once the repo is cloned: ```npm start``` is the only command you need to enter into the terminal.
 
-  You will see a main menu.
+  You will see a main menu. At this point a new database has been created and you have a ```drop Database``` option which will reset the database but does not reset the schema. ```run Seeds``` will seed the database with pre-created data if you would like to demo the app first. ```disconnect``` will disconnect your mysql2 connection and terminate the node process.
+
+  Any of the query options will return a table to the terminal, any add option will allow you to add data to the tables. The update functions are for managers and employees. The delete options can delete any data from any table.
 
   It is important to note that each manager and employee that you create must be attached to a pre-existing department and role. If you attempt to create a manager or employee without at least 1 department and 1 role created, you will see an error and be taken back to the main menu.
 
@@ -52,11 +51,13 @@ A content management system that runs entirely in your terminal.
   Email: [danielharned@gmail.com](mailto:danielharned@gmail.com)
 
   ## Contributing
-  Forking is encouraged if you would like to contribute!
+  For the project if you would like to contribute. Queries are easy to add by first adding a new query method to the class in ```service > queries.js``` and then adding a prompt to ```controllers > prompts > prompts.js```
 
   ## Credits
   
-  * [express.js](https://expressjs.com/)
+  * [mysql2](https://www.npmjs.com/package/mysql2)
+  * [inquirer](https://www.npmjs.com/package/inquirer)
+  * [console.table](https://www.npmjs.com/package/console.table)
 
   ## License
   Licensed under [MIT](https://choosealicense.com/licenses/mit) 2022 
