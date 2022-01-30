@@ -19,7 +19,7 @@ A content management system that runs entirely in your terminal.
   The order of operations is ```app -> prompts -> app -> presenter -> queries```
 
   ## Walk Through Video
-  [Link to Walk Through]()
+  [Link to Walk Through](https://watch.screencastify.com/v/oYHJO16EgIswUoUV2ghg)
 
   ## Table of contents
 
