@@ -41,7 +41,8 @@ employee (
         FOREIGN KEY (roles_id)
         REFERENCES roles(id)
         ON DELETE SET NULL,
-    FOREIGN KEY (manager_id)
+    CONSTRAINT fk_man
+        FOREIGN KEY (manager_id)
         REFERENCES managers(id)
         ON DELETE SET NULL
 );

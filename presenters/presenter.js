@@ -14,14 +14,14 @@ class Presenter {
     display(action, content = "") {
         let a = action.split(' ').join('');
         let c = content.split(',')
-        getQuery[a](rows => console.table(rows), c);
+        getQuery[a](rows => {
+            console.log("\n")
+            console.table(rows), c});
     }
 
     execute(action, content = "") {
         let a = action.split(' ').join('');
         let c = content.split(',')
-        console.log(a)
-        console.log(c)
         getQuery[a](c)
     }
 }

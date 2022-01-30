@@ -72,7 +72,23 @@ class Queries {
 
         db.query(sql, (err, rows) => {
             if (err) {
-                console.log(err.message);
+                console.log(err.message.sqlMessage);
+                return;
+            }
+            cb(rows);
+        });
+    };
+
+    queryAllManagers(cb) {
+        const sql = `SELECT managers.id, CONCAT(managers.first_name, ' ', managers.last_name) AS name, roles.title, roles.salary, department.name AS department
+        FROM managers
+        LEFT JOIN roles ON managers.roles_id = roles.id
+        LEFT JOIN department ON roles.dep_id = department.id
+        ORDER BY managers.last_name;`
+
+        db.query(sql, (err, rows) => {
+            if (err) {
+                console.log(err.message.sqlMessage);
                 return;
             }
             cb(rows);
@@ -87,7 +103,7 @@ class Queries {
             .then(([rows, fields]) => {
                 cb(rows);
             })
-            .catch(console.log)
+            .catch((err) => console.log(`\n Error: ${err.sqlMessage}`))
     }
 
     queryAllRoles(cb) {
@@ -101,7 +117,7 @@ class Queries {
             .then(([rows, fields]) => {
                 cb(rows);
             })
-            .catch(console.log)
+            .catch((err) => console.log(`\n Error: ${err.sqlMessage}`))
     }
 
     // queryTotalDepartmentBudget(cb, dept) {
@@ -121,70 +137,70 @@ class Queries {
         const sql = `INSERT INTO department (name) VALUES (?);`
 
         db.promise().query(sql, dept)
-        .catch(console.log)
+        .catch((err) => console.log(`\n Error: ${err.sqlMessage}`))
     }
 
     addRole(role) {
         const sql = `INSERT INTO roles (title, salary, dep_id) VALUES (?,?,?);`
 
         db.promise().query(sql, role)
-        .catch(console.log)
+        .catch((err) => console.log(`\n Error: ${err.sqlMessage}`))
     }
 
     addManager(man) {
         const sql = `INSERT INTO managers (first_name, last_name, roles_id) VALUES (?,?,?);`
 
         db.promise().query(sql, man)
-        .catch(console.log)
+        .catch((err) => console.log(`\n Error: ${err.sqlMessage}`))
     }
 
     addEmployee(emp) {
         const sql = `INSERT INTO employee (first_name, last_name, roles_id, manager_id) VALUES (?,?,?,?);`
 
         db.promise().query(sql, emp)
-        .catch(console.log)
+        .catch((err) => console.log(`\n Error: ${err.sqlMessage}`))
     }
 
     updateEmployeeRole(emp) {
         const sql = `UPDATE employee SET roles_id = ? WHERE id = ?;`
 
         db.promise().query(sql, emp)
-        .catch(console.log)
+        .catch((err) => console.log(`\n Error: ${err.sqlMessage}`))
     }
 
     updateEmployeeManager(emp) {
         const sql = `UPDATE employee SET manager_id = ? WHERE id = ?;`
 
         db.promise().query(sql, emp)
-        .catch(console.log)
+        .catch((err) => console.log(`\n Error: ${err.sqlMessage}`))
     }
 
     deleteDepartment(dep) {
         const sql = `DELETE FROM department WHERE department.id = ?;`
 
         db.promise().query(sql, dep)
-        .catch(console.log)
+        .catch((err) => console.log(`\n Error: ${err.sqlMessage}`))
     }
 
     deleteRole(role) {
         const sql = `DELETE FROM roles WHERE roles.id = ?;`
 
         db.promise().query(sql, role)
-        .catch(console.log)
+        .catch((err) => console.log(`\n Error: ${err.sqlMessage}`))
     }
 
     deleteEmployee(emp) {
         const sql = `DELETE FROM employee WHERE employee.id = ?;`
 
         db.promise().query(sql, emp)
-        .catch(console.log)
+        .catch((err) => console.log(`\n Error: ${err.sqlMessage}`))
     }
 
     deleteManager(man) {
         const sql = `DELETE FROM managers WHERE managers.id = ?;`
 
         db.promise().query(sql, man)
-        .catch(console.log)
+        .catch((err) => console.log(`\n Error: ${err.sqlMessage}`))
     }
 
 }

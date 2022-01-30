@@ -14,19 +14,31 @@ class Prompt {
                 type: 'list',
                 name: 'menu',
                 message: 'What would you like to do?',
-                choices: ['query All Employees', 'query All Departments', 'query All Roles', new inquirer.Separator(), 'add Department', 'add Role', 'add Manager', 'add Employee', new inquirer.Separator(), 'update Employee Role', 'update Employee Manager', new inquirer.Separator(), 'delete Department', 'delete Role', 'delete Employee', 'delete Manager', new inquirer.Separator(), 'disconnect',new inquirer.Separator(), 'run Seeds', new inquirer.Separator(), 'drop Database', new inquirer.Separator()]
+                choices: ['query All Employees', 'query All Departments', 'query All Roles', 'query All Managers', new inquirer.Separator(), 'add Department', 'add Role', 'add Manager', 'add Employee', new inquirer.Separator(), 'update Employee Role', 'update Employee Manager', new inquirer.Separator(), 'delete Department', 'delete Role', 'delete Employee', 'delete Manager', new inquirer.Separator(), 'disconnect',new inquirer.Separator(), 'run Seeds', new inquirer.Separator(), 'drop Database', new inquirer.Separator()]
             },
             {
                 type: 'input',
                 name: 'addDep',
                 message: 'Please provide a department name.',
-                when: (answers) => answers.menu === 'add Department'
+                when: (answers) => answers.menu === 'add Department',
+                validate: (answers) => {
+                    if (answers) {
+                        return true;
+                    }
+                    return false;
+                }
             },
             {
                 type: 'input',
                 name: 'addRole',
                 message: 'Please provide a role title',
-                when: (answers) => answers.menu === 'add Role'
+                when: (answers) => answers.menu === 'add Role',
+                validate: (answers) => {
+                    if (answers) {
+                        return true;
+                    }
+                    return false;
+                }
             },
             {
                 type: 'input',
@@ -36,6 +48,12 @@ class Prompt {
                     if (answers.addRole) {
                         return true;
                     }
+                },
+                validate: (answers) => {
+                    if (answers) {
+                        return true;
+                    }
+                    return false;
                 }
             },
             {
@@ -46,13 +64,25 @@ class Prompt {
                     if (answers.addRoleSalary) {
                         return true;
                     }
+                },
+                validate: (answers) => {
+                    if (answers) {
+                        return true;
+                    }
+                    return false;
                 }
             },
             {
                 type: 'input',
                 name: 'addManF',
                 message: 'Please provide the manager\'s first name',
-                when: (answers) => answers.menu === 'add Manager'
+                when: (answers) => answers.menu === 'add Manager',
+                validate: (answers) => {
+                    if (answers) {
+                        return true;
+                    }
+                    return false;
+                }
             },
             {   
                 type: 'input',
@@ -62,6 +92,12 @@ class Prompt {
                     if (answers.addManF) {
                         return true;
                     }
+                },
+                validate: (answers) => {
+                    if (answers) {
+                        return true;
+                    }
+                    return false;
                 }
             },
             {
@@ -72,13 +108,25 @@ class Prompt {
                     if (answers.addManL) {
                         return true;
                     }
+                },
+                validate: (answers) => {
+                    if (answers) {
+                        return true;
+                    }
+                    return false;
                 }
             },
             {
                 type: 'input',
                 name: 'addEmployeeF',
                 message: 'Please provide the employee\'s first name',
-                when: (answers) => answers.menu === 'add Employee'
+                when: (answers) => answers.menu === 'add Employee',
+                validate: (answers) => {
+                    if (answers) {
+                        return true;
+                    }
+                    return false;
+                }
             },
             {   
                 type: 'input',
@@ -88,6 +136,12 @@ class Prompt {
                     if (answers.addEmployeeF) {
                         return true;
                     }
+                },
+                validate: (answers) => {
+                    if (answers) {
+                        return true;
+                    }
+                    return false;
                 }
             },
             {
@@ -98,6 +152,12 @@ class Prompt {
                     if (answers.addEmployeeL) {
                         return true;
                     }
+                },
+                validate: (answers) => {
+                    if (answers) {
+                        return true;
+                    }
+                    return false;
                 }
             },
             {
@@ -108,13 +168,25 @@ class Prompt {
                     if (answers.addERoleId) {
                         return true;
                     }
+                },
+                validate: (answers) => {
+                    if (answers) {
+                        return true;
+                    }
+                    return false;
                 }
             },
             {
                 type: 'input',
                 name: 'updateERole',
                 message: 'What will the employee\'s new role id be?',
-                when: (answers) => answers.menu === 'update Employee Role'
+                when: (answers) => answers.menu === 'update Employee Role',
+                validate: (answers) => {
+                    if (answers) {
+                        return true;
+                    }
+                    return false;
+                }
             },
             {   
                 type: 'input',
@@ -124,13 +196,25 @@ class Prompt {
                     if (answers.updateERole) {
                         return true;
                     }
+                },
+                validate: (answers) => {
+                    if (answers) {
+                        return true;
+                    }
+                    return false;
                 }
             },
             {
                 type: 'input',
                 name: 'updateEMan',
                 message: 'What will the employee\'s new manager id be?',
-                when: (answers) => answers.menu === 'update Employee Manager'
+                when: (answers) => answers.menu === 'update Employee Manager',
+                validate: (answers) => {
+                    if (answers) {
+                        return true;
+                    }
+                    return false;
+                }
             },
             {   
                 type: 'input',
@@ -140,31 +224,61 @@ class Prompt {
                     if (answers.updateEMan) {
                         return true;
                     }
+                },
+                validate: (answers) => {
+                    if (answers) {
+                        return true;
+                    }
+                    return false;
                 }
             },
             {
                 type: 'input',
                 name: 'deleteDep',
                 message: 'What is the id of the department you want to delete?',
-                when: (answers) => answers.menu === 'delete Department'
+                when: (answers) => answers.menu === 'delete Department',
+                validate: (answers) => {
+                    if (answers) {
+                        return true;
+                    }
+                    return false;
+                }
             },
             {
                 type: 'input',
                 name: 'deleteRole',
                 message: 'What is the id of the role you want to delete?',
-                when: (answers) => answers.menu === 'delete Role'
+                when: (answers) => answers.menu === 'delete Role',
+                validate: (answers) => {
+                    if (answers) {
+                        return true;
+                    }
+                    return false;
+                }
             },
             {
                 type: 'input',
                 name: 'deleteEmp',
                 message: 'What is the id of the employee you want to delete?',
-                when: (answers) => answers.menu === 'delete Employee'
+                when: (answers) => answers.menu === 'delete Employee',
+                validate: (answers) => {
+                    if (answers) {
+                        return true;
+                    }
+                    return false;
+                }
             },
             {
                 type: 'input',
                 name: 'deleteMan',
                 message: 'What is the id of the manager you want to delete',
-                when: (answers) => answers.menu === 'delete Manager'
+                when: (answers) => answers.menu === 'delete Manager',
+                validate: (answers) => {
+                    if (answers) {
+                        return true;
+                    }
+                    return false;
+                }
             }
         ])
     }
