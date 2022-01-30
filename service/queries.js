@@ -77,52 +77,87 @@ class Queries {
             .catch(console.log)
     }
 
+    // queryTotalDepartmentBudget(cb, dept) {
+    //     const sql = 
+    //     `SELECT department.name AS Department, roles.salary * SELECT COUNT(employee.id) WHERE employee.roles_id = ?
+    //     FROM roles 
+    //     LEFT JOIN department ON roles.dep_id = department.id WHERE department.id = ?;`
+
+    //     db.promise().query(sql, dept)
+    //         .then(([rows, fields]) => {
+    //             cb(rows);
+    //         })
+    //         .catch(console.log)
+    // }
+
     addDepartment(dept) {
         const sql = `INSERT INTO department (name) VALUES (?);`
 
-        db.query(sql, dept, (err, rows) => {
-            if (err) {
-                console.log(err.message);
-                return;
-            }
-            
-        });
+        db.promise().query(sql, dept)
+        .catch(console.log)
     }
 
     addRole(role) {
         const sql = `INSERT INTO roles (title, salary, dep_id) VALUES (?,?,?);`
 
-        db.query(sql, role, (err, rows) => {
-            if (err) {
-                console.log(err.message);
-                return;
-            }
-            
-        });
+        db.promise().query(sql, role)
+        .catch(console.log)
     }
 
     addManager(man) {
         const sql = `INSERT INTO roles (first_name, last_name, roles_id) VALUES (?,?,?);`
 
-        db.query(sql, man, (err, rows) => {
-            if (err) {
-                console.log(err.message);
-                return;
-            }
-            
-        });
+        db.promise().query(sql, man)
+        .catch(console.log)
     }
 
     addEmployee(emp) {
         const sql = `INSERT INTO roles (first_name, last_name, roles_id, manager_id) VALUES (?,?,?,?);`
 
-        db.query(sql, emp, (err, rows) => {
-            if (err) {
-                console.log(err.message);
-                return;
-            }
-            
-        });
+        db.promise().query(sql, emp)
+        .catch(console.log)
+    }
+
+    updateEmployeeRole(emp) {
+        const sql = `UPDATE employee SET roles_id = ? WHERE id = ?;`
+
+        db.promise().query(sql, emp)
+        .catch(console.log)
+    }
+
+    updateEmployeeManager(emp) {
+        const sql = `UPDATE employee SET manager_id = ? WHERE id = ?;`
+
+        db.promise().query(sql, emp)
+        .catch(console.log)
+    }
+
+    deleteDepartment(dep) {
+        const sql = `DELETE FROM department WHERE department.id = ?;`
+
+        db.promise().query(sql, dep)
+        .catch(console.log)
+    }
+
+    deleteRole(role) {
+        const sql = `DELETE FROM roles WHERE roles.id = ?;`
+
+        db.promise().query(sql, role)
+        .catch(console.log)
+    }
+
+    deleteEmployee(emp) {
+        const sql = `DELETE FROM employee WHERE employee.id = ?;`
+
+        db.promise().query(sql, emp)
+        .catch(console.log)
+    }
+
+    deleteManager(man) {
+        const sql = `DELETE FROM managers WHERE managers.id = ?;`
+
+        db.promise().query(sql, man)
+        .catch(console.log)
     }
 
 }

@@ -11,12 +11,13 @@ class Presenter {
         getQuery.runSeeds();
     }
 
-    display(action) {
+    display(action, content = "") {
         let a = action.split(' ').join('');
-        getQuery[a](rows => console.table(rows));
+        let c = content.split(',')
+        getQuery[a](rows => console.table(rows), c);
     }
 
-    append(action, content) {
+    execute(action, content = "") {
         let a = action.split(' ').join('');
         let c = content.split(',')
         getQuery[a](c)
