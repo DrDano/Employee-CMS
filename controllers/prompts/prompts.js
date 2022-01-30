@@ -21,6 +21,24 @@ class Prompt {
                 name: 'addDep',
                 message: 'Please provide a department name.',
                 when: (answers) => answers.menu === 'add Department'
+            },
+            {
+                type: 'input',
+                name: 'addRole',
+                message: 'Please provide a role title',
+                when: (answers) => answers.menu === 'add Role'
+            },
+            {
+                type: 'input',
+                name: 'addRoleSalary',
+                message: 'Please provide a role salary',
+                when: (answers) => answers.menu === 'addRole'
+            },
+            {
+                type: 'input',
+                name: 'addRoleDep',
+                message: 'Please provide a role department number',
+                when: (answers) => answers.menu === 'addRoleSalary'
             }
         ])
     }
