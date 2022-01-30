@@ -48,6 +48,8 @@ A content management system that runs entirely in your terminal.
 
   You will see a main menu. At this point a new database has been created and you have a ```drop Database``` option which will reset the database but does not reset the schema. ```run Seeds``` will seed the database with pre-created data if you would like to demo the app first. ```disconnect``` will disconnect your mysql2 connection and terminate the node process.
 
+  NOTE: When you disconnect you will see an error, this is normal and is returned because node was terminated. This also happens if you choose to disconnect with ```^C```
+
   Any of the query options will return a table to the terminal, any add option will allow you to add data to the tables. The update functions are for managers and employees. The delete options can delete any data from any table.
 
   It is important to note that each manager and employee that you create must be attached to a pre-existing department and role. If you attempt to create a manager or employee without at least 1 department and 1 role created, you will see an error and be taken back to the main menu.
