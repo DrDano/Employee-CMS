@@ -20,6 +20,8 @@ class Presenter {
     execute(action, content = "") {
         let a = action.split(' ').join('');
         let c = content.split(',')
+        console.log(a)
+        console.log(c)
         getQuery[a](c)
     }
 }

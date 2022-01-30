@@ -14,7 +14,7 @@ class Prompt {
                 type: 'list',
                 name: 'menu',
                 message: 'What would you like to do?',
-                choices: ['query All Employees', 'query All Departments', 'query All Roles', new inquirer.Separator(), 'add Department', 'add Role', 'add Manager', 'add Employee', new inquirer.Separator(), 'update Employee Role', 'update Employee Manager', new inquirer.Separator(), 'delete Department', 'delete Role', 'delete Employee', 'delete Manager', new inquirer.Separator()]
+                choices: ['query All Employees', 'query All Departments', 'query All Roles', new inquirer.Separator(), 'add Department', 'add Role', 'add Manager', 'add Employee', new inquirer.Separator(), 'update Employee Role', 'update Employee Manager', new inquirer.Separator(), 'delete Department', 'delete Role', 'delete Employee', 'delete Manager', new inquirer.Separator(), 'disconnect',new inquirer.Separator()]
             },
             {
                 type: 'input',
@@ -32,13 +32,21 @@ class Prompt {
                 type: 'input',
                 name: 'addRoleSalary',
                 message: 'Please provide a role salary',
-                when: (answers) => answers.menu === 'addRole'
+                when: (answers) => {
+                    if (answers.addRole) {
+                        return true;
+                    }
+                }
             },
             {
                 type: 'input',
                 name: 'addRoleDep',
                 message: 'Please provide a role department number',
-                when: (answers) => answers.menu === 'addRoleSalary'
+                when: (answers) => {
+                    if (answers.addRoleSalary) {
+                        return true;
+                    }
+                }
             }
         ])
     }

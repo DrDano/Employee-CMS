@@ -15,6 +15,8 @@ function app() {
             return;
         } else {
             modResult = Object.values(result).slice(1).toString()
+            console.log(result.menu)
+            console.log(modResult)
             present.execute(result.menu, modResult)
         }
     })

@@ -1,4 +1,5 @@
 const fs = require('fs');
+const { exit } = require('process');
 const db = require('../db');
 
 class Queries {
@@ -7,8 +8,15 @@ class Queries {
         this.seeds = fs.readFileSync('./db/seeds.sql').toString();
     }
 
-    disconnect() {
+    disconnect(data = "") {
         db.end();
+        const displayInfo = () => {
+            console.log('Exiting Menu')
+        }
+
+        process.on('SIGHUP', displayInfo);
+
+        process.kill(process.pid, 'SIGHUP')
     }
 
     runSchema() {
@@ -68,7 +76,7 @@ class Queries {
         `SELECT roles.id, roles.title, roles.salary, department.name AS department
         FROM roles
         LEFT JOIN department ON roles.dep_id = department.id
-        GROUP BY dep_id ORDER BY dep_id DESC;`
+        ORDER BY dep_id DESC;`
 
         db.promise().query(sql)
             .then(([rows, fields]) => {
