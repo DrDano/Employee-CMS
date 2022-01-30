@@ -12,13 +12,14 @@ class Presenter {
     }
 
     display(action) {
-        action = action.split(' ').join('');
-        getQuery[action](rows => console.table(rows));
+        let a = action.split(' ').join('');
+        getQuery[a](rows => console.table(rows));
     }
 
     append(action, content) {
-        action = action.split(' ').join('');
-        getQuery[action](content)
+        let a = action.split(' ').join('');
+        let c = content.split(',')
+        getQuery[a](c)
     }
 }
 

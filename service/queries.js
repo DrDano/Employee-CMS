@@ -89,6 +89,42 @@ class Queries {
         });
     }
 
+    addRole(role) {
+        const sql = `INSERT INTO roles (title, salary, dep_id) VALUES (?,?,?);`
+
+        db.query(sql, role, (err, rows) => {
+            if (err) {
+                console.log(err.message);
+                return;
+            }
+            
+        });
+    }
+
+    addManager(man) {
+        const sql = `INSERT INTO roles (first_name, last_name, roles_id) VALUES (?,?,?);`
+
+        db.query(sql, man, (err, rows) => {
+            if (err) {
+                console.log(err.message);
+                return;
+            }
+            
+        });
+    }
+
+    addEmployee(emp) {
+        const sql = `INSERT INTO roles (first_name, last_name, roles_id, manager_id) VALUES (?,?,?,?);`
+
+        db.query(sql, emp, (err, rows) => {
+            if (err) {
+                console.log(err.message);
+                return;
+            }
+            
+        });
+    }
+
 }
 
 module.exports = Queries;
